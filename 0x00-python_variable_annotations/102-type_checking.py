@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
+TYpe checking -
 using mypy to validate code
+Arguments: lst: Tuple, factor: int = 2
 """
 
-from typing import Tuple, List, Any
+from typing import Tuple, List
 
 
-def zoom_array(lst: Tuple, factor: int = 2) -> List[Any]:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """
     Type check
     """
