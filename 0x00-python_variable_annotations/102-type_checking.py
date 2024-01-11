@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-
+using mypy to validate code
 """
 
 from typing import Tuple, List, Any
@@ -8,7 +8,7 @@ from typing import Tuple, List, Any
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List[Any]:
     """
-
+    Type check
     """
     zoomed_in: List = [
             item for item in lst
