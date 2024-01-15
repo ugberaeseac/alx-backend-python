@@ -8,7 +8,6 @@ Returns a list of all the delays in ascending order
 
 import asyncio
 
-
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
