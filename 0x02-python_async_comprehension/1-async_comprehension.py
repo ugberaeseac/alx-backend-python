@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 async comprehension
 import async_generator from 0-async_generator
