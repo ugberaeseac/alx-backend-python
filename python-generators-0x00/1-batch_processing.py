@@ -11,7 +11,13 @@ data in batches from the users database
 import mysql.connector
 from mysql.connector import errorcode
 
-db_config = {                                                                                     'host': 'localhost',                                                              'user': 'admin',                                                                  'password': 'Testing101#',                                                        'database': 'ALX_prodev'                                                  } 
+db_config = {
+                'name': 'localhost',
+                'user': 'admin',
+                'password': 'Testing101@',
+                'database': 'ALX_prodev';
+        }
+
 
 connection = mysql.connector.connect(**db_config)
 cursor = connection.cursor(dictionary=True)
