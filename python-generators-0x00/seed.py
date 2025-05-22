@@ -50,12 +50,12 @@ def create_table(connection):
     if connection:
         try:
             cursor = connection.cursor()
-            cursor.execute(""" CREATE TABLE user_data (
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            age INTEGER NOT NULL
-
-            )
+            cursor.execute("""	CREATE TABLE IF NOT EXISTS user_data (
+				user_id VARCHAR(36) PRIMARY KEY,
+				name VARCHAR(255) NOT NULL,
+			    email VARCHAR(255) NOT NULL,
+				age INTEGER NOT NULL,
+				INDEX (user_id))
             """
             )
             print('Table user_data created successfully')
@@ -65,10 +65,15 @@ def create_table(connection):
 
 def insert_data(connection, data):
     """ populate database with sample data from csvfile """
+    import uuid
+
     cursor = connection.cursor()
     with open(data, 'r') as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',')
         for line in csv_reader:
-            cursor.execute("INSERT INTO user_data VALUES(%s, %s, %s)",
-            (line['name'], line['email'], line['age']))
+            cursor.execute("INSERT INTO user_data VALUES(%s, %s, %s, %s)",
+            (str(uuid.uuid4()), line['name'], line['email'], line['age']))
+
+    connection.commit()
+    cursor.close()
 

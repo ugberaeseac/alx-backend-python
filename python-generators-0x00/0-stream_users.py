@@ -25,8 +25,8 @@ def stream_users():
             print(err)
     else:
         cursor.execute("SELECT * FROM user_data;")
-        while True:
-            row = cursor.fetchone()
+        rows = cursor.fetchall()
+        for row in rows:
             if row is None:
                 break
             yield row
@@ -36,5 +36,3 @@ def stream_users():
         if connection:
             connection.close()
 
-
-stream_users()
