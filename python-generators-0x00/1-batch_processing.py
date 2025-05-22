@@ -14,7 +14,7 @@ from mysql.connector import errorcode
 db_config = {                                                                                     'host': 'localhost',                                                              'user': 'admin',                                                                  'password': 'Testing101#',                                                        'database': 'ALX_prodev'                                                  } 
 
 connection = mysql.connector.connect(**db_config)
-cursor = connection.cursor()
+cursor = connection.cursor(dictionary=True)
 
 
 def stream_users_in_batches(batch_size):
@@ -30,16 +30,11 @@ def stream_users_in_batches(batch_size):
 def batch_processing(batch_size):
     """processes each batch and filter by age """
 
-    my_dict = {}
     batch = stream_users_in_batches(batch_size)
     if batch:
         for row in batch:
-            if (row[3]) > 25:
-                my_dict['user_id'] = row[0]
-                my_dict['name'] = row[1]
-                my_dict['email'] = row[2]
-                my_dict['age'] = row[3]
-                print(my_dict)
+            if (row['age']) > 25:
+                print(row)
 
 
 
