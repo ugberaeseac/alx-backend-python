@@ -16,6 +16,7 @@ def log_queries(func):
     """ decorator function """
 
     logging.basicConfig(filename='{}.log'.format(func.__name__), level=logging.INFO)
+    
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         logging.info('Query executed: {} at {}'.format(kwargs.get('query'), datetime.utcnow()))
