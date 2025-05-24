@@ -76,4 +76,3 @@ def insert_data(connection, data):
 
     connection.commit()
     cursor.close()
-
