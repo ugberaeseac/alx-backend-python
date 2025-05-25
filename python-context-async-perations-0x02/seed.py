@@ -23,7 +23,7 @@ def create_table(connection):
     if connection:
         try:
             cursor = connection.cursor()
-            cursor.execute("""	CREATE TABLE IF NOT EXISTS user_data (
+            cursor.execute("""	CREATE TABLE IF NOT EXISTS users (
 				user_id INTEGER PRIMARY KEY,
 				name TEXT,
 			    email TEXT,
@@ -45,7 +45,7 @@ def insert_data(connection, data):
         count = 0
         for line in csv_reader:
             count += 1
-            cursor.execute("INSERT INTO user_data VALUES(?, ?, ?, ?)",
+            cursor.execute("INSERT INTO users VALUES(?, ?, ?, ?)",
             (count, line['name'], line['email'], line['age']))
 
     connection.commit()
@@ -57,6 +57,6 @@ create_table(connection)
 insert_data(connection, 'user_data.csv')
 
 cursor = connection.cursor()
-cursor.execute('SELECT * FROM user_data;')
+cursor.execute('SELECT * FROM users;')
 for rows in cursor:
     print(rows)

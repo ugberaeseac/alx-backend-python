@@ -27,7 +27,7 @@ class DatabaseConnection():
 
 with DatabaseConnection('users.db') as connection:
     cursor = connection.cursor()
-    cursor.execute('SELECT * FROM user_data;')
+    cursor.execute('SELECT * FROM users;')
     users = cursor.fetchall()
     for user in users:
        print(user)
