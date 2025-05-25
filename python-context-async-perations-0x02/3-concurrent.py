@@ -25,8 +25,8 @@ async def async_fetch_older_users():
 
 
 async def fetch_concurrently():
-    batch = asyncio.gather(async_fetch_users(), async_fetch_older_users())
-    result_fetch_users, result_fetch_older_users = await batch
+    batch = await asyncio.gather(async_fetch_users(), async_fetch_older_users())
+    result_fetch_users, result_fetch_older_users = batch
 
     for row in result_fetch_users:
         print(row)
