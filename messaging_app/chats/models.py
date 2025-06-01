@@ -8,6 +8,9 @@ import uuid
 class User(AbstractUser):
     """ """
     user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    first_name = models.CharField(max_length=100, blank=False, null=False)
+    last_name = models.CharField(max_length=100, blank=False, null=False)
+    password = models.CharField(max_length=128, blank=False, null=False)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     
     def __str__(self):
@@ -16,7 +19,7 @@ class User(AbstractUser):
 
 class Conversation(models.Model):
     """ """
-    conversatation_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    conversation_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='conversations')
     created_on = models.DateTimeField(auto_now_add=True)
 
