@@ -5,7 +5,7 @@
 """
 
 from rest_framework import serializers
-from .models import User, Conversation, Message
+from .models import User, Message, Conversation
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -24,26 +24,21 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MessageSerializer(serializers.ModelSerializer):
     """ serialize the Message class """
-    sender_fname = serializers.CharField(source='sender.first_name')
-    sender_lname = serializers.CharField(source='sender.last_name')
-    sender_phone = serializers.CharField(source='sender.phone_number')
 
+    sender = UserSerializer()
 
     class Meta:
         model = Message
         fields = (
                 'message_id',
-                'sender_fname',
-                'sender_lname',
-                'sender_phone',
-                'conversation',
+                'sender',
                 'message_body',
                 'sent_at',
                 'created_at'
             )
 
-    def validate_msgbody(self, value):
-        if len(message_body) == 0:
+    def validate_message_body(self, value):
+        if len(self.value) == 0:
             raise serializers.ValidationError(
                     'You cannot send an empty message'
                     )
@@ -52,24 +47,19 @@ class MessageSerializer(serializers.ModelSerializer):
 
 class ConversationSerializer(serializers.ModelSerializer):
     """ serialize the Conversation class """
-
-    participants = UserSerializer()
-
+    
     messages = MessageSerializer(many=True, read_only=True)
     total_messages = serializers.SerializerMethodField()
 
     def get_total_messages(self, obj):
-        count = 0
-        msgs = obj.messages.all()
-        for msg in msgs:
-            count += 1
-        return count
+        return obj.messages.count()
 
 
     class Meta:
         model = Conversation
         fields = (
-                'partipants',
+                'conversation_id',
                 'created_at',
+                'messages',
                 'total_messages',
             )

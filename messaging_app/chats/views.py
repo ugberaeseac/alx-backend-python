@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import generics
 from django.http import HttpResponse
 from .models import User, Conversation, Message
-from .serializers import MessageSerializer
+from .serializers import ConversationSerializer
 
 
 # Create your views here.
@@ -14,11 +15,13 @@ def home(request):
 
 
 
+#@api_view(['GET'])
+#def conversation_list(request):
+#    """ list all conversations """
+#    conv = Conversation.objects.all()
+#    serializer = ConversationSerializer(conv, many=True)
+#    return Response(serializer.data)
 
-
-@api_view(['GET'])
-def conversation_list(request):
-    """ list all conversations """
-    conv = Conversation.objects.all()
-    serializer = MessageSerializer(conv, many=True)
-    return Response(serializer.data)
+class ConversationListAPIView(generics.ListAPIView):
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer

@@ -37,4 +37,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Message ({} - {})'.format(self.sender.username, self.content[:30])
+        return 'Message ({} - {})'.format(self.sender.username, self.message_body[:30])

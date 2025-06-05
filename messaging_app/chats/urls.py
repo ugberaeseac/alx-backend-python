@@ -19,5 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
-    path('conversation_list/', views.conversation_list),
+    path('conversation_list/', views.ConversationListAPIView.as_view()),
 ]
