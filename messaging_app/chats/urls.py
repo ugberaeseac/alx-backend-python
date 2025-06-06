@@ -24,7 +24,6 @@ router.register('conversations', views.ConversationViewSet)
 router.register('messages', views.MessageViewSet)
 
 urlpatterns = [
-    path('', views.home),
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
 
