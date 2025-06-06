@@ -16,14 +16,18 @@ Including another URLconf
 """
 from django.urls import path, include
 from . import views
-from rest_framework import routers
+from rest_framework_nested.routers import DefaultRouter, NestedDefaultRouter
 
 
-router = routers.DefaultRouter()
+router = DefaultRouter()
 router.register('conversations', views.ConversationViewSet)
-router.register('messages', views.MessageViewSet)
+
+nested_router = NestedDefaultRouter(router, 'conversations', lookup='conversation')
+nested_router.register('messages', views.MessageViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('', include(nested_router.urls))
 ]
 
