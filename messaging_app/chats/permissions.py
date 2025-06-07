@@ -1,1 +1,1 @@
-from rest_framework.permissions import BasePermissions
+from rest_framework import permissions
