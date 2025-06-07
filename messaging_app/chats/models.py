@@ -10,11 +10,13 @@ class User(AbstractUser):
     user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     first_name = models.CharField(max_length=100, blank=False, null=False)
     last_name = models.CharField(max_length=100, blank=False, null=False)
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=100, blank=False, null=False, unique=True)
     password = models.CharField(max_length=128, blank=False, null=False)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     
     def __str__(self):
-        return 'User ({}, {}, {})'.format(self.id, self.username, self.email)
+        return '{} {} - {}'.format(self.first_name, self.last_name, self.email)
 
 
 class Conversation(models.Model):
@@ -24,7 +26,7 @@ class Conversation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Conversation ({})'.format(self.id)
+        return 'Conversation ({})'.format(self.conversation_id)
 
 
 class Message(models.Model):
@@ -37,4 +39,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Message ({} - {})'.format(self.sender.username, self.message_body[:30])
+        return 'Message ({} - {})'.format(self.sender.first_name, self.message_body[:30])

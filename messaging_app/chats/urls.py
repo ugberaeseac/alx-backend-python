@@ -28,6 +28,6 @@ nested_router.register('messages', views.MessageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('', include(nested_router.urls))
+    path('', include(nested_router.urls)),
 ]
 
