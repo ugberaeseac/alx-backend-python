@@ -20,10 +20,10 @@ from rest_framework_nested.routers import DefaultRouter, NestedDefaultRouter
 
 
 router = DefaultRouter()
-router.register('conversations', views.ConversationViewSet)
+router.register('conversations', views.ConversationViewSet, basename='conversation')
 
 nested_router = NestedDefaultRouter(router, 'conversations', lookup='conversation')
-nested_router.register('messages', views.MessageViewSet)
+nested_router.register('messages', views.MessageViewSet, basename='message')
 
 
 urlpatterns = [
