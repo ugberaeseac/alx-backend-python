@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 from rest_framework import viewsets, status, filters
 from django.http import HttpResponse
 from .models import User, Conversation, Message
@@ -26,5 +27,27 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
 class MessageViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Message.objects.all()
     serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        return Message.objects.filter(conversation__particpants=self.request.user)
+
+    def perform_create(self, serializer):
+        conversation = serializer.validate_data.get('conversation')
+        if self.request.user not in conversation__participants.all():
+            raise PermissionDenied('You can not send a message to this conversation')
+        serializer.save(sender=self.request.user)
+
+    def perform_update(self, serializer):
+        conversation = serializer.instance.conversation
+        if self.request.user not in conversation__participants.all():
+            raise PermissionDenied('You are not a participant in this conversation')
+        serializer.save()
+
+    def perform_delete(self, instance):
+        conversation = instance.conversation
+        if self.request.user not in conversation__participants.all():
+            raise PermissionDenied('You are not a participant in this conversation')
+        instance.delete()
+
+
