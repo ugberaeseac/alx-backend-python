@@ -3,10 +3,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
 from rest_framework import viewsets, status, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from django.http import HttpResponse
 from .models import User, Conversation, Message
 from .serializers import ConversationSerializer, MessageSerializer
 from .permissions import IsParticipantOfConversation
+from .pagination import MessagePagination
+from .filters import MessageFilter
 
 
 # Create your views here.
@@ -28,6 +31,9 @@ class ConversationViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = MessageSerializer
+    pagination_class = MessagePagination
+    filter_backends = [DjangoFilterBackend]
+    filter_class = MessageFilter
 
     def get_queryset(self):
         return Message.objects.filter(conversation__particpants=self.request.user)
