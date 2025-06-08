@@ -16,6 +16,6 @@ class IsParticipantOfConversation(permissions.BasePermission):
         checks if user has permission to interact with Conversation Object
         """
         if request.method in ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']:
-            return request.user in obj.participants.object.all()
+            return request.user in obj.participants.objects.all()
         return False
 

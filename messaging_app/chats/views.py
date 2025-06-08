@@ -34,8 +34,9 @@ class MessageViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         conversation = serializer.validate_data.get('conversation')
+        conversation_id = conversation.id
         if self.request.user not in conversation__participants.all():
-            raise PermissionDenied('You can not send a message to this conversation')
+            return Response({'message': 'You can not send a message to this conversation'}, status=status.HTTP_403_FORBIDDEN)
         serializer.save(sender=self.request.user)
 
     def perform_update(self, serializer):
