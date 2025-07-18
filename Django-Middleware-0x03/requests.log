@@ -29,3 +29,5 @@ INFO:root:2025-07-18 21:42:06.072033 - User:   - admin@demo.com - Path: /api/
 INFO:root:2025-07-18 21:42:06.354730 - User:   - admin@demo.com - Path: /favicon.ico
 WARNING:django.request:Not Found: /favicon.ico
 INFO:root:2025-07-18 21:42:08.784597 - User:   - admin@demo.com - Path: /api/conversations/
+INFO:root:2025-07-18 21:59:53.402721 - User:   - admin@demo.com - Path: /api/conversations/
+WARNING:django.request:Forbidden: /api/conversations/
