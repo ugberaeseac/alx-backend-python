@@ -1,0 +1,6 @@
+INFO:root:%s
+INFO:root:%s
+INFO:root:%s
+INFO:root:SELECT * FROM user_data;
+INFO:root:SELECT * FROM user_data;
+INFO:root:Query executed: SELECT * FROM user_data; at 2025-05-24 22:11:32.995058
