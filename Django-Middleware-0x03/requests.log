@@ -4,3 +4,28 @@ INFO:root:2025-07-18 21:19:58.769027 - User:AnonymousUser - Path:/api/conversati
 WARNING:django.request:Unauthorized: /api/conversations/
 INFO:root:2025-07-18 21:20:04.183752 - User:AnonymousUser - Path:/api/token/
 WARNING:django.request:Method Not Allowed: /api/token/
+INFO:root:2025-07-18 21:38:45.756333 - User: AnonymousUser - Path: /
+INFO:root:2025-07-18 21:38:45.985604 - User: AnonymousUser - Path: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:root:2025-07-18 21:40:09.862113 - User: AnonymousUser - Path: /
+INFO:root:2025-07-18 21:40:12.965934 - User: AnonymousUser - Path: /admin/
+INFO:root:2025-07-18 21:40:13.099497 - User: AnonymousUser - Path: /admin/login/
+INFO:root:2025-07-18 21:40:18.235772 - User: AnonymousUser - Path: /admin/login/
+INFO:root:2025-07-18 21:40:19.568367 - User:   - admin@demo.com - Path: /admin/
+INFO:root:2025-07-18 21:40:25.492304 - User:   - admin@demo.com - Path: /admin/chats/user/
+INFO:root:2025-07-18 21:40:25.692314 - User:   - admin@demo.com - Path: /admin/jsi18n/
+INFO:root:2025-07-18 21:40:31.034953 - User:   - admin@demo.com - Path: /admin/chats/user/add/
+INFO:root:2025-07-18 21:40:31.478410 - User:   - admin@demo.com - Path: /admin/jsi18n/
+INFO:root:2025-07-18 21:40:49.608254 - User:   - admin@demo.com - Path: /admin/auth/group/add/
+INFO:root:2025-07-18 21:40:49.867761 - User:   - admin@demo.com - Path: /admin/jsi18n/
+INFO:root:2025-07-18 21:40:50.164610 - User:   - admin@demo.com - Path: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:root:2025-07-18 21:41:47.776887 - User:   - admin@demo.com - Path: /admin/chats/user/add/
+INFO:root:2025-07-18 21:41:48.020822 - User:   - admin@demo.com - Path: /admin/chats/user/
+INFO:root:2025-07-18 21:41:48.251426 - User:   - admin@demo.com - Path: /admin/jsi18n/
+INFO:root:2025-07-18 21:41:48.413409 - User:   - admin@demo.com - Path: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:root:2025-07-18 21:42:06.072033 - User:   - admin@demo.com - Path: /api/
+INFO:root:2025-07-18 21:42:06.354730 - User:   - admin@demo.com - Path: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:root:2025-07-18 21:42:08.784597 - User:   - admin@demo.com - Path: /api/conversations/
