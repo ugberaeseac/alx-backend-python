@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'apps.chats.middleware.RequestLoggingMiddleware',
     'apps.chats.middleware.RestrictAccessByTimeMiddleware',
+    'apps.chats.middleware.OffensiveLanguageMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
