@@ -79,9 +79,28 @@ class OffensiveLanguageMiddleware():
             return ip
 
 
+class RolepermissionMiddleware():
+    """
+    middleware that checks if admin/moderator
+    before allowing access to certain routes
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
 
 
+    def __call__(self, request):
+        protected_routes = ['/admin/',]
 
+        if request.path in protected_routes:
+            if not request.user.is_authenticated:
+                return JsonResponse({'error': 'Authorization required'}, status=401)
+
+            if not (request.user.is_superuser or request.user.is_staff):
+                return JsonResponse({'error': 'Permission denied'}, status=403)
+
+        response = self.get_response(request)
+        return response
 
 
 
